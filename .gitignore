@@ -8,6 +8,8 @@
 /composeApp/prefs.preferences_pb
 .kotlin
 
+/iosApp/Pods/
+
 ### Android ###
 # Gradle files
 .gradle/
