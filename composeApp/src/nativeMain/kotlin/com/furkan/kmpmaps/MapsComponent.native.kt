@@ -6,8 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.interop.UIKitView
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.UIKitInteropProperties
+import androidx.compose.ui.viewinterop.UIKitView
 import cocoapods.Google_Maps_iOS_Utils.GMSCameraPosition
 import cocoapods.Google_Maps_iOS_Utils.GMSCameraUpdate
 import cocoapods.Google_Maps_iOS_Utils.GMSMapView
@@ -27,9 +28,13 @@ actual fun MapsComponent() {
     mapView.moveCamera(cameraUpdate)
 
     UIKitView(
+        factory = { mapView },
         modifier = Modifier
             .fillMaxSize()
             .border(2.dp, Color.Blue),
-        factory = { mapView }
+        properties = UIKitInteropProperties(
+            isInteractive = true,
+            isNativeAccessibilityEnabled = true
+        )
     )
 }
